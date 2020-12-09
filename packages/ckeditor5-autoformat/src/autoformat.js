@@ -60,11 +60,12 @@ export default class Autoformat extends Plugin {
 	}
 
 	/**
+	 * Matches autoformatting delimiters along with separator.
+	 *
+	 * @private
 	 * @param {RegExp} regExp The regular expression matching text to format.
 	 * Contrary to default behavior, this regular expression must provide *four* groups.
 	 * First group should hold a separator that limits the scope of when the autoformatting is applied.
-	 *
-	 * @private
 	 */
 	_matchAutoformatWithSeparators( regExp ) {
 		return text => {
@@ -134,19 +135,26 @@ export default class Autoformat extends Plugin {
 	 */
 	_addBasicStylesAutoformats() {
 		const commands = this.editor.commands;
+		const whitespace = '\\s';
+		const punctuation = '!"#$%&\\\'()*+,-./:;<=>?@\\[\\]\\^_`{|}~`\\s';
+		const separator = `[${ whitespace }${ punctuation }]`;
 
 		if ( commands.get( 'bold' ) ) {
 			const boldCallback = getCallbackFunctionForInlineAutoformat( this.editor, 'bold' );
 			inlineAutoformatEditing(
 				this.editor,
 				this,
-				this._matchAutoformatWithSeparators( /(\s)(\*\*)([^*]+)(\*\*)(?:\s)/g ),
+				this._matchAutoformatWithSeparators(
+					new RegExp( `(${ separator })(\\*\\*)([^*]+)(\\*\\*)(?:${ separator })`, 'g' )
+				),
 				boldCallback
 			);
 			inlineAutoformatEditing(
 				this.editor,
 				this,
-				this._matchAutoformatWithSeparators( /(\s)(__)([^_]+)(__)(?:\s)/g ),
+				this._matchAutoformatWithSeparators(
+					new RegExp( `(${ separator })(__)([^_]+)(__)(?:${ separator })`, 'g' )
+				),
 				boldCallback
 			);
 		}
