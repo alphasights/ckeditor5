@@ -136,7 +136,7 @@ export default class Autoformat extends Plugin {
 	_addBasicStylesAutoformats() {
 		const commands = this.editor.commands;
 		const whitespace = '\\s';
-		const punctuation = '!"#$%&\\\'()*+,-./:;<=>?@\\[\\]\\^_`{|}~`\\s';
+		const punctuation = '!"#$%&\\\'()+,-./:;<=>?@\\[\\]\\^`{|}~`\\s';
 		const separator = `[${ whitespace }${ punctuation }]`;
 
 		if ( commands.get( 'bold' ) ) {
@@ -167,13 +167,17 @@ export default class Autoformat extends Plugin {
 			inlineAutoformatEditing(
 				this.editor,
 				this,
-				this._matchAutoformatWithSeparators( /(^|\s)(\*)([^*_]+)(\*)(?:\s)/g ),
+				this._matchAutoformatWithSeparators(
+					new RegExp( `(^|${ separator })(\\*)([^*_]+)(\\*)(?:${ separator })`, 'g' )
+				),
 				italicCallback
 			);
 			inlineAutoformatEditing(
 				this.editor,
 				this,
-				this._matchAutoformatWithSeparators( /(^|\s)(_)([^_]+)(_)(?:\s)/g ),
+				this._matchAutoformatWithSeparators(
+					new RegExp( `(^|${ separator })(_)([^_]+)(_)(?:${ separator })`, 'g' )
+				),
 				italicCallback
 			);
 		}
