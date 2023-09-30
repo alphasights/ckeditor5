@@ -1,0 +1,149 @@
+{
+	"name": "CKEditor 5",
+	"slug": "ckeditor5",
+	"hexo-config": "docs/hexo-custom-config.json",
+	"path": "docs",
+	"scripts": {
+		"snippet-adapter": "../scripts/docs/snippet-adapter/snippetadapter",
+		"import-path": "../scripts/docs/getrealimportpath"
+	},
+	"docsearch": {
+		"apiKey": "fc463c26455365ad403d5ec51796cd73",
+		"indexName": "ckeditor_nightly"
+	},
+	"groups": [
+		{
+			"name": "API",
+			"id": "api-reference",
+			"sourceDir": "api",
+			"slug": "api",
+			"type": "jsdoc"
+		},
+		{
+			"name": "Framework",
+			"id": "framework",
+			"slug": "framework",
+			"categories": [
+				{
+					"name": "Guides",
+					"id": "framework-guides",
+					"slug": "guides",
+					"categories": [
+						{
+							"name": "Getting started",
+							"id": "getting-started",
+							"slug": "getting-started",
+							"categories": [
+								{
+									"name": "Inserting CKEditor",
+									"id": "inserting-ckeditor",
+									"slug": "inserting-ckeditor"
+								},
+								{
+									"name": "End User Features",
+									"id": "end-user-features",
+									"slug": "end-user-features"
+								}
+							]
+						},
+						{
+							"name": "Plugins",
+							"id": "plugins",
+							"slug": "plugins"
+						}
+					]
+				},
+				{
+					"name": "Tutorials",
+					"id": "tutorials",
+					"slug": "tutorials",
+					"categories": [
+						{
+							"name": "How to",
+							"id": "how-to",
+							"slug": "how-to",
+							"categories": [
+								{
+									"name": "Step by step",
+									"id": "step-by-step",
+									"slug": "step-by-step"
+								}
+							]
+						},
+						{
+							"name": "Advanced tutorials",
+							"id": "advanced-tutorials",
+							"slug": "advanced-tutorials"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Builds",
+			"id": "builds",
+			"slug": "builds",
+			"categories": [
+				{
+					"name": "Guides",
+					"id": "builds-guides",
+					"slug": "guides",
+					"categories": [
+						{
+							"name": "Integration",
+							"id": "builds-integration",
+							"slug": "integration",
+							"order": 100
+						},
+						{
+							"name": "Development",
+							"id": "builds-development",
+							"slug": "development",
+							"order": 200
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Features",
+			"id": "features",
+			"slug": "features"
+		},
+		{
+			"name": "Examples",
+			"id": "examples",
+			"slug": "examples",
+			"categories": [
+				{
+					"name": "Builds",
+					"id": "examples-builds",
+					"slug": "builds"
+				},
+				{
+				  "name": "Framework",
+				  "id": "examples-framework",
+				  "slug": "framework"
+				}
+			]
+		}
+	],
+	"items": [
+		{
+			"path": "packages/ckeditor5-autoformat",
+			"prefix": "autoformat"
+		},
+		{
+			"path": "packages/ckeditor5-heading",
+			"prefix": "heading"
+		},
+		{
+			"path": "packages/ckeditor5-image",
+			"prefix": "image"
+		},
+		{
+			"path": "packages/ckeditor5-markdown-gfm",
+			"prefix": "markdown-gfm"
+		}
+	]
+}
