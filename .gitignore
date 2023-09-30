@@ -1,0 +1,8 @@
+node_modules/
+build/
+coverage/
+packages/*/node_modules/
+docs/api/output.json
+lerna-debug.log
+.idea
+.vscode
