@@ -1,0 +1,113 @@
+/**
+ * @license Copyright (c) 2003-2020, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ */
+
+const INFO_STYLES = 'background: hsl(234, 100%, 94%);padding: 1em;border: 2px solid hsl(240, 100%, 50%);';
+
+const customRawElementContents = domElement => {
+	domElement.innerHTML = '<span>Inner HTML of a raw element.</span>';
+};
+
+const message = 'It works!';
+
+/**
+ * The downcast definition of the "info" model element.
+ *
+ * It returns view structure in JSX syntax.
+ *
+ * @param modelElement
+ * @param writer
+ * @returns {JSX.Element}
+ */
+// eslint-disable-next-line no-unused-vars
+const downcastInfo = ( modelElement, { writer } ) => (
+	<div class="info" style={ INFO_STYLES } data-info-id={ modelElement.getAttribute( 'infoId' ) }>
+		<p class="info-message">
+			<attribute:strong>{ message }
+				<attribute:em>🍔</attribute:em>
+			</attribute:strong>
+		</p>
+		<empty:img src="../tests/manual/sample.jpg" style="width:120px"/>
+		<raw:p renderFunction={ customRawElementContents }></raw:p>
+	</div>
+);
+
+/**
+ * CKX Info plugin.
+ *
+ * This requires babel plugins in webpack config:
+
+ *	const webpackConfig = {
+ *		// ... other configuration
+ *
+ *		plugins: [
+ *			// ... other plugins
+ *
+ *			// Include CKX-ready writer.
+ *			new webpack.NormalModuleReplacementPlugin(
+ *				/\.\/downcastwriter$/,
+ *				'./../../../../packages/ckeditor5-build-classic/src/ckx/ckxwriter'
+ *			)
+ *		],
+ *
+ *		module: {
+ *			rules: [
+ *				// ... other rules
+ *				{
+ *					// Added support for ".ckx" file type.
+ *					test: /\.ckx$/,
+ *					use: [
+ *						{
+ *							loader: 'babel-loader',
+ *							options: {
+ *								plugins: [
+ *									'@babel/plugin-syntax-jsx',
+ *									[
+ *										'@babel/plugin-transform-react-jsx',
+ *										{
+ *											runtime: 'classic',
+ *											pragma: 'writer.createNestedElement',
+ *											pragmaFrag: '"DocumentFragment"',
+ *											throwIfNamespace: false
+ *										}
+ *									]
+ *								]
+ *							}
+ *						}
+ *					]
+ *				}
+ *			]
+ *		}
+ *	};
+ *
+ * with mentioned plugins to be installed. Pragma fragment is not added.
+ *
+ * @param editor
+ * @constructor
+ */
+function Info( editor ) {
+	editor.model.schema.register( 'info', {
+		allowIn: '$root',
+		isObject: true,
+		isSelectable: true,
+		allowAttributes: [ 'infoId' ]
+	} );
+
+	editor.conversion.for( 'upcast' )
+		.elementToElement( {
+			view: { name: 'div', classes: 'info' },
+			model: 'info'
+		} )
+		.attributeToAttribute( {
+			view: 'data-info-id',
+			model: 'infoId'
+		} );
+
+	editor.conversion.for( 'downcast' ).elementToElement( {
+		model: 'info',
+		view: downcastInfo
+	} );
+}
+
+export default Info;
