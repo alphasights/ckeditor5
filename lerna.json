@@ -1,0 +1,10 @@
+{
+  "lerna": "2.0.0-rc.1",
+  "packages": [
+    "packages/*",
+    "."
+  ],
+  "hoist": true,
+  "nohoist": "guppy-pre-commit",
+  "version": "0.0.0"
+}
