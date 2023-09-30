@@ -1,0 +1,30 @@
+sudo: required
+dist: xenial
+addons:
+  chrome: stable
+language: node_js
+services:
+- xvfb
+cache:
+  yarn: true
+node_js:
+- "10"
+cache:
+- node_modules
+before_install:
+- export START_TIME=$( date +%s )
+- npm i -g yarn
+install:
+- yarn install
+script:
+- ./scripts/continuous-integration-run-tests.sh
+- yarn run docs:api --validate-only
+- 'if [ $TRAVIS_TEST_RESULT -eq 0 ]; then
+    travis_wait 30 yarn run docs:build-and-publish-nightly;
+  fi'
+after_script:
+- export END_TIME=$( date +%s )
+- ckeditor5-dev-tests-notify-travis-status
+env:
+  global:
+  - secure: RO140EQDHmEOPJPikk8eCY5IdHpnEKGm41p5U1ewAbeZv1DpCG+rSumR2JdYl75kFAaZvCSm1NuVMM+kmYd+/z+LQbKj7QH5G/UHNho3H89blIU6WlJhT0YR5vclm9rvnEvOtxnfODca1Qrw+CaCoJks2o4VYbJB7mOBVNsh7Bc=
