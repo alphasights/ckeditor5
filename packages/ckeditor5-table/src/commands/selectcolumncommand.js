@@ -1,0 +1,82 @@
+/**
+ * @license Copyright (c) 2003-2020, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ */
+
+/**
+ * @module table/commands/selectcolumncommand
+ */
+
+import Command from '@ckeditor/ckeditor5-core/src/command';
+
+import TableWalker from '../tablewalker';
+import { getSelectionAffectedTableCells } from '../utils/selection';
+
+/**
+ * The select column command.
+ *
+ * The command is registered by {@link module:table/tableediting~TableEditing} as the `'selectTableColumn'` editor command.
+ *
+ * To select the columns containing the selected cells, execute the command:
+ *
+ *		editor.execute( 'selectTableColumn' );
+ *
+ * @extends module:core/command~Command
+ */
+export default class SelectColumnCommand extends Command {
+	/**
+	 * @inheritDoc
+	 */
+	refresh() {
+		const selectedCells = getSelectionAffectedTableCells( this.editor.model.document.selection );
+
+		this.isEnabled = selectedCells.length > 0;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	execute( options = {} ) {
+		const model = this.editor.model;
+		const selection = model.document.selection;
+		const tableUtils = this.editor.plugins.get( 'TableUtils' );
+
+		const { table, startColumn, endColumn } = options.table ? {
+			table: options.table,
+			startColumn: options.column,
+			endColumn: options.column
+		} : getOptionsFromSelection( selection, tableUtils );
+
+		const rangesToSelect = [];
+
+		for ( const cellInfo of new TableWalker( table, { startColumn, endColumn } ) ) {
+			rangesToSelect.push( model.createRangeOn( cellInfo.cell ) );
+		}
+
+		model.change( writer => {
+			writer.setSelection( rangesToSelect );
+		} );
+	}
+}
+
+/**
+ * TODO
+ */
+function getOptionsFromSelection( selection, tableUtils ) {
+	const referenceCells = getSelectionAffectedTableCells( selection );
+	const firstCell = referenceCells[ 0 ];
+	const lastCell = referenceCells.pop();
+	const table = firstCell.findAncestor( 'table' );
+
+	const startLocation = tableUtils.getCellLocation( firstCell );
+	const endLocation = tableUtils.getCellLocation( lastCell );
+
+	const startColumn = Math.min( startLocation.column, endLocation.column );
+	const endColumn = Math.max( startLocation.column, endLocation.column );
+
+	return {
+		table,
+		startColumn,
+		endColumn
+	};
+}
