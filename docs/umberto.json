@@ -1,0 +1,271 @@
+{
+	"name": "CKEditor 5",
+	"slug": "ckeditor5",
+	"hexo-config": "docs/hexo-custom-config.json",
+	"path": "docs",
+	"observablesdocs": "module:utils/observablemixin~ObservableMixin",
+	"scripts": {
+		"snippet-adapter": "../scripts/docs/snippet-adapter/snippetadapter",
+		"import-path": "../scripts/docs/getrealimportpath"
+	},
+	"docsearch": {
+		"apiKey": "fc463c26455365ad403d5ec51796cd73",
+		"indexName": "ckeditor_nightly",
+		"customRanking": [
+			{
+				"url": "api/module_core_editor_editorconfig-EditorConfig.html",
+				"rank": 10
+			},
+			{
+				"url": "api/module_heading_heading-HeadingConfig.html",
+				"rank": 7
+			},
+			{
+				"url": "api/module_image_image-ImageConfig.html",
+				"rank": 7
+			},
+			{
+				"url": "api/module_editor-classic_classiceditor-ClassicEditor.html",
+				"rank": 5
+			},
+			{
+				"url": "api/module_editor-balloon_ballooneditor-BalloonEditor.html",
+				"rank": 5
+			},
+			{
+				"url": "api/module_editor-inline_inlineeditor-InlineEditor.html",
+				"rank": 5
+			},
+			{
+				"url": "api/module_utils_config.html",
+				"rank": -5
+			}
+		]
+	},
+	"googleanalytics": {
+		"domains": [ "ckeditor5.github.io" ],
+		"config": {
+			"trackingId": "UA-271067-19",
+			"cookieDomain": "ckeditor5.github.io"
+		}
+	},
+	"groups": [
+		{
+			"name": "Builds",
+			"id": "builds",
+			"slug": "builds",
+			"categories": [
+				{
+					"name": "Guides",
+					"id": "builds-guides",
+					"slug": "guides",
+					"categories": [
+						{
+							"name": "Integration",
+							"id": "builds-integration",
+							"slug": "integration",
+							"order": 100
+						},
+						{
+							"name": "Development",
+							"id": "builds-development",
+							"slug": "development",
+							"order": 200
+						},
+						{
+							"name": "Support",
+							"id": "builds-support",
+							"slug": "support",
+							"order": 300
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Framework",
+			"id": "framework",
+			"slug": "framework",
+			"categories": [
+				{
+					"name": "Guides",
+					"id": "framework-guides",
+					"slug": "guides",
+					"categories": [
+						{
+							"name": "Architecture",
+							"id": "framework-architecture",
+							"slug": "architecture",
+							"order": 100
+						},
+						{
+							"name": "User interface",
+							"id": "framework-ui",
+							"slug": "ui",
+							"order": 200
+						},
+						{
+							"name": "Contributing",
+							"id": "framework-contributing",
+							"slug": "contributing",
+							"order": 300
+						},
+						{
+							"name": "Support",
+							"id": "framework-support",
+							"slug": "support",
+							"order": 400
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Examples",
+			"id": "examples",
+			"slug": "examples",
+			"categories": [
+				{
+					"name": "Builds",
+					"id": "examples-builds",
+					"slug": "builds"
+				},
+				{
+					"name": "Framework",
+					"id": "examples-framework",
+					"slug": "framework"
+				}
+			]
+		},
+		{
+			"name": "Features",
+			"id": "features",
+			"slug": "features"
+		},
+		{
+			"name": "API",
+			"id": "api-reference",
+			"sourceDir": "api",
+			"slug": "api",
+			"type": "jsdoc"
+		}
+	],
+	"items": [
+		{
+			"path": "packages/ckeditor5-adapter-ckfinder",
+			"prefix": "adapter-ckfinder"
+		},
+		{
+			"path": "packages/ckeditor5-autoformat",
+			"prefix": "autoformat"
+		},
+		{
+			"path": "packages/ckeditor5-basic-styles",
+			"prefix": "basic-styles"
+		},
+		{
+			"path": "packages/ckeditor5-block-quote",
+			"prefix": "block-quote"
+		},
+		{
+			"path": "packages/ckeditor5-build-balloon",
+			"prefix": "build-balloon"
+		},
+		{
+			"path": "packages/ckeditor5-build-classic",
+			"prefix": "build-classic"
+		},
+		{
+			"path": "packages/ckeditor5-build-inline",
+			"prefix": "build-inline"
+		},
+		{
+			"path": "packages/ckeditor5-clipboard",
+			"prefix": "clipboard"
+		},
+		{
+			"path": "packages/ckeditor5-core",
+			"prefix": "core"
+		},
+		{
+			"path": "packages/ckeditor5-easy-image",
+			"prefix": "easy-image"
+		},
+		{
+			"path": "packages/ckeditor5-editor-balloon",
+			"prefix": "editor-balloon"
+		},
+		{
+			"path": "packages/ckeditor5-editor-classic",
+			"prefix": "editor-classic"
+		},
+		{
+			"path": "packages/ckeditor5-editor-inline",
+			"prefix": "editor-inline"
+		},
+		{
+			"path": "packages/ckeditor5-engine",
+			"prefix": "engine"
+		},
+		{
+			"path": "packages/ckeditor5-enter",
+			"prefix": "enter"
+		},
+		{
+			"path": "packages/ckeditor5-essentials",
+			"prefix": "essentials"
+		},
+		{
+			"path": "packages/ckeditor5-heading",
+			"prefix": "heading"
+		},
+		{
+			"path": "packages/ckeditor5-image",
+			"prefix": "image"
+		},
+		{
+			"path": "packages/ckeditor5-link",
+			"prefix": "link"
+		},
+		{
+			"path": "packages/ckeditor5-list",
+			"prefix": "list"
+		},
+		{
+			"path": "packages/ckeditor5-markdown-gfm",
+			"prefix": "markdown-gfm"
+		},
+		{
+			"path": "packages/ckeditor5-paragraph",
+			"prefix": "paragraph"
+		},
+		{
+			"path": "packages/ckeditor5-theme-lark",
+			"prefix": "theme-lark"
+		},
+		{
+			"path": "packages/ckeditor5-typing",
+			"prefix": "typing"
+		},
+		{
+			"path": "packages/ckeditor5-ui",
+			"prefix": "ui"
+		},
+		{
+			"path": "packages/ckeditor5-undo",
+			"prefix": "undo"
+		},
+		{
+			"path": "packages/ckeditor5-upload",
+			"prefix": "upload"
+		},
+		{
+			"path": "packages/ckeditor5-utils",
+			"prefix": "utils"
+		},
+		{
+			"path": "packages/ckeditor5-widget",
+			"prefix": "widget"
+		}
+	]
+}

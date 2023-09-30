@@ -1,0 +1,95 @@
+{
+  "name": "ckeditor5",
+  "version": "1.0.0-alpha.2",
+  "description": "The development environment of CKEditor 5.",
+  "keywords": [
+    "CKEditor",
+    "ckeditor5",
+    "editor",
+    "WYSIWYG",
+    "text editor",
+    "rich-text editor",
+    "contentEditable",
+    "editing framework"
+  ],
+  "dependencies": {
+    "@ckeditor/ckeditor5-adapter-ckfinder": "^1.0.0-alpha.2",
+    "@ckeditor/ckeditor5-autoformat": "^1.0.0-alpha.2",
+    "@ckeditor/ckeditor5-basic-styles": "^1.0.0-alpha.2",
+    "@ckeditor/ckeditor5-block-quote": "^1.0.0-alpha.2",
+    "@ckeditor/ckeditor5-build-balloon": "^1.0.0-alpha.2",
+    "@ckeditor/ckeditor5-build-classic": "^1.0.0-alpha.2",
+    "@ckeditor/ckeditor5-build-inline": "^1.0.0-alpha.2",
+    "@ckeditor/ckeditor5-clipboard": "^1.0.0-alpha.2",
+    "@ckeditor/ckeditor5-cloudservices": "^1.0.0-alpha.1",
+    "@ckeditor/ckeditor5-core": "^1.0.0-alpha.2",
+    "@ckeditor/ckeditor5-easy-image": "^1.0.0-alpha.2",
+    "@ckeditor/ckeditor5-editor-balloon": "^1.0.0-alpha.2",
+    "@ckeditor/ckeditor5-editor-classic": "^1.0.0-alpha.2",
+    "@ckeditor/ckeditor5-editor-inline": "^1.0.0-alpha.2",
+    "@ckeditor/ckeditor5-engine": "ckeditor/ckeditor5-engine#6dfcbc9",
+    "@ckeditor/ckeditor5-enter": "^1.0.0-alpha.2",
+    "@ckeditor/ckeditor5-essentials": "^1.0.0-alpha.2",
+    "@ckeditor/ckeditor5-heading": "^1.0.0-alpha.2",
+    "@ckeditor/ckeditor5-image": "ckeditor/ckeditor5-image#69b047a",
+    "@ckeditor/ckeditor5-link": "ckeditor/ckeditor5-link#0536a24",
+    "@ckeditor/ckeditor5-list": "ckeditor/ckeditor5-list#d83f8ad",
+    "@ckeditor/ckeditor5-markdown-gfm": "^1.0.0-alpha.2",
+    "@ckeditor/ckeditor5-paragraph": "^1.0.0-alpha.2",
+    "@ckeditor/ckeditor5-theme-lark": "^1.0.0-alpha.2",
+    "@ckeditor/ckeditor5-typing": "ckeditor/ckeditor5-typing#d4fa613",
+    "@ckeditor/ckeditor5-ui": "^1.0.0-alpha.2",
+    "@ckeditor/ckeditor5-undo": "ckeditor/ckeditor5-undo#eccda17",
+    "@ckeditor/ckeditor5-upload": "ckeditor/ckeditor5-upload#0baa3ac",
+    "@ckeditor/ckeditor5-utils": "^1.0.0-alpha.2",
+    "@ckeditor/ckeditor5-widget": "^1.0.0-alpha.2"
+  },
+  "devDependencies": {
+    "@ckeditor/ckeditor5-dev-docs": "^8.0.0",
+    "@ckeditor/ckeditor5-dev-tests": "^10.0.0",
+    "eslint": "^4.8.0",
+    "eslint-config-ckeditor5": "^1.0.6",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.2.3",
+    "lerna": "^2.2.0",
+    "mgit2": "^0.7.2"
+  },
+  "engines": {
+    "node": ">=6.0.0",
+    "npm": ">=3.0.0"
+  },
+  "author": "CKSource (http://cksource.com/)",
+  "license": "(GPL-2.0 OR LGPL-2.1 OR MPL-1.1)",
+  "homepage": "http://ckeditor.com",
+  "bugs": "https://github.com/ckeditor/ckeditor5/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ckeditor/ckeditor5.git"
+  },
+  "scripts": {
+    "lint": "eslint --quiet '**/*.js'",
+    "precommit": "lint-staged",
+    "test": "node --max_old_space_size=4096 ./node_modules/.bin/ckeditor5-dev-tests",
+    "test:manual": "node --max_old_space_size=4096 ./node_modules/.bin/ckeditor5-dev-tests-manual",
+    "docs": "node ./scripts/docs/build-docs.js",
+    "docs:api": "node ./scripts/docs/build-api-docs.js",
+    "translations:collect": "ckeditor5-dev-env-translations collect",
+    "translations:download": "ckeditor5-dev-env-translations download",
+    "translations:upload": "ckeditor5-dev-env-translations upload",
+    "changelog": "node ./scripts/release/changelog.js",
+    "release:dependencies": "node ./scripts/release/release-dependencies.js",
+    "install-optional-dependencies": "sh ./scripts/install-optional-dependencies.sh",
+    "switch-to-dev-dev": "sh ./scripts/switch-to-dev-dev.sh",
+    "build-and-publish-docs": "node ./scripts/docs/build-and-publish.js"
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "eslint --quiet"
+    ]
+  },
+  "eslintIgnore": [
+    "build/**",
+    "coverage/**",
+    "packages/**"
+  ]
+}
